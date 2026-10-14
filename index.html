@@ -17,11 +17,11 @@
     <nav aria-label="Основная навигация">
       <button class="nav-item active" id="studio-nav"><span class="nav-icon">▤</span> Задача <span class="nav-arrow">↗</span></button>
       <button class="nav-item" data-panel="dictionary"><span class="nav-icon">Aa</span> Словарь <span class="count" id="dictionary-count">0</span></button>
-      <button class="nav-item" data-panel="rules"><span class="nav-icon">☷</span> Регламент</button>
-      <button class="nav-item" data-panel="history"><span class="nav-icon">◷</span> История <span class="count" id="history-count">0</span></button>
+      <button class="nav-item" data-panel="rules"><span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M9 6h11M9 12h11M9 18h11"/><path d="M4 6h.01M4 12h.01M4 18h.01" stroke-width="3"/></svg></span> Регламент</button>
+      <button class="nav-item" data-panel="history"><span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 7v5l3 2"/></svg></span> История <span class="count" id="history-count">0</span></button>
     </nav>
     <div class="sidebar-bottom">
-      <button class="nav-item" data-panel="settings"><span class="nav-icon">⚙</span> Подключение AI <span class="connection-dot" id="connection-dot"></span></button>
+      <button class="nav-item" data-panel="settings"><span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><path d="m9 3-.7 2.4-2.4 1L3.7 6l-1.5 3 1.8 1.6v2.8L2.2 15l1.5 3 2.2-.4 2.4 1L9 21h6l.7-2.4 2.4-1 2.2.4 1.5-3-1.8-1.6v-2.8L21.8 9l-1.5-3-2.2.4-2.4-1L15 3Z"/><circle cx="12" cy="12" r="3"/></svg></span> Подключение AI <span class="connection-dot" id="connection-dot"></span></button>
     </div>
   </aside>
   <main>
@@ -35,14 +35,15 @@
             <button class="voice-button" id="voice-button"><span class="mic-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><rect x="9" y="3" width="6" height="12" rx="3"/><path d="M5 11v2a7 7 0 0 0 14 0v-2M12 20v3M8 23h8"/></svg></span><span><strong id="voice-label">Просто расскажите голосом</strong><small id="voice-hint">Нажмите, чтобы начать запись</small></span><span class="wave" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span></button>
             <div class="or-divider"><span>или напишите</span></div>
             <label class="sr-only" for="task-input">Исходная задача</label>
-            <textarea id="task-input" maxlength="14000" placeholder="Например: нужно обновить карточки трёх моделей на сайте. Добавить характеристики, новые фотографии и проверить, что всё отображается правильно…"></textarea>
-            <div class="input-meta"><button class="text-button" id="example-button">✧ Попробовать на примере</button><span id="char-count">0 / 14 000</span></div>
+            <textarea id="task-input" placeholder="Например: нужно обновить карточки трёх моделей на сайте. Добавить характеристики, новые фотографии и проверить, что всё отображается правильно…"></textarea>
+            <div class="input-meta"><button class="text-button" id="example-button">✧ Попробовать на примере</button><span id="char-count">0 знаков</span></div>
             <div class="task-options"><label class="check-option smart-option"><input type="checkbox" id="smart-toggle" checked><span><strong>Умная постановка</strong><small>Уточнить детали, прежде чем собирать задачу</small></span></label><label class="option-line"><span><strong>Задача с подзадачами</strong><small>Один общий результат, несколько этапов</small></span><input type="checkbox" id="subtasks-toggle" role="switch"><span class="switch" aria-hidden="true"></span></label><label class="check-option"><input type="checkbox" id="checklist-toggle" checked> Добавить чек-лист, если он нужен</label></div>
             <div class="dictionary-hint"><span>Aa</span><p>Термины и модели — из вашего словаря</p><button data-panel="dictionary" aria-label="Открыть словарь">↗</button></div>
             <div id="error-box" class="error-box" role="alert" hidden></div>
             <button class="primary-button generate-button" id="generate-button"><span>✳</span><span id="generate-label">Собрать задачу</span><span>→</span></button>
             <p class="under-button" id="under-button">Деморежим · без отправки данных в нейросеть</p>
           </div>
+          <section class="card voice-panel" id="voice-panel" hidden><p id="voice-progress" role="status"></p><details id="voice-recovery" hidden><summary>Прослушать запись и проверить фрагменты</summary><p class="muted">Звук доступен только в этой вкладке. Скачайте нужные фрагменты перед её закрытием.</p><div id="voice-recovery-list"></div></details><button type="button" class="text-button" id="accept-partial" hidden>Использовать распознанную часть</button></section>
           <section class="card questions-card" id="questions-card" hidden><div class="card-heading"><h2>Уточним пару деталей</h2></div><p class="muted">Чтобы результат совпал с вашей задумкой.</p><form id="questions-form"><div id="questions-fields"></div><button class="primary-button" type="submit">Добавить ответы и собрать →</button><button class="text-button skip-button" id="skip-questions" type="button">Собрать черновик без ответов</button></form></section>
         </section>
         <section class="preview-column" aria-label="Результат">
